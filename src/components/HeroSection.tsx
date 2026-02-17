@@ -27,8 +27,8 @@ const HeroSection = () => {
         <img src={heroBg} alt="Cityscape" className="w-full h-[130%] object-cover" />
       </motion.div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background z-[1]" />
+      {/* Light overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background z-[1]" />
 
       {/* Particles */}
       <Particles />
