@@ -1,13 +1,37 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
+import HeroSection from "@/components/HeroSection";
+import ServicesCarousel from "@/components/ServicesCarousel";
+import SectorsCarousel from "@/components/SectorsCarousel";
+import TabsSection from "@/components/TabsSection";
+import CreativeCarousel from "@/components/CreativeCarousel";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <LoadingScreen isLoading={isLoading} />
+      <main className="bg-background min-h-screen">
+        <HeroSection />
+        <div className="section-divider" />
+        <ServicesCarousel />
+        <div className="section-divider" />
+        <SectorsCarousel />
+        <div className="section-divider" />
+        <TabsSection />
+        <div className="section-divider" />
+        <CreativeCarousel />
+        <div className="section-divider" />
+        <Footer />
+      </main>
+    </>
   );
 };
 
