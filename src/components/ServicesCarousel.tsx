@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import brandAssociation from "@/assets/brand-association.jpg";
@@ -27,99 +27,166 @@ const ServicesCarousel = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const next = useCallback(() => setCurrent((p) => (p + 1) % items.length), []);
-  const prev = useCallback(() => setCurrent((p) => (p - 1 + items.length) % items.length), []);
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((p) => (p + 1) % items.length);
+  }, []);
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setCurrent((p) => (p - 1 + items.length) % items.length);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(next, 5000);
     return () => clearInterval(interval);
   }, [next]);
 
+  const slideVariants = {
+    enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0, rotateY: dir > 0 ? 15 : -15 }),
+    center: { x: 0, opacity: 1, rotateY: 0 },
+    exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0, rotateY: dir > 0 ? -15 : 15 }),
+  };
+
   return (
-    <section ref={ref} className="py-24 px-4 md:px-8 lg:px-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section ref={ref} className="py-28 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+      {/* Background decoration */}
+      <motion.div
+        className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.04] blur-3xl"
+        style={{ background: "hsl(12 80% 55%)" }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      />
+
+      <div className="max-w-7xl mx-auto relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left - Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Our Products <span className="text-gradient-gold">&</span>
-            </h2>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient-purple">
+          <div>
+            <motion.div
+              className="inline-block mb-4 px-3 py-1 rounded-full text-xs font-body font-semibold tracking-wider uppercase text-secondary border border-secondary/20"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              Our Expertise
+            </motion.div>
+            <motion.h2
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-[1.1]"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              Our Products <span className="text-gradient-coral">&</span>
+            </motion.h2>
+            <motion.h2
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gradient-teal leading-[1.1]"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               Services
-            </h2>
-            <p className="font-body text-muted-foreground text-lg leading-relaxed">
+            </motion.h2>
+            <motion.p
+              className="font-body text-muted-foreground text-lg leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               Media, Marketing, and Events agency under the DemiGod House Hedge Fund portfolio, crafting impactful brand success stories for associates and clients worldwide.
-            </p>
-          </motion.div>
+            </motion.p>
+
+            {/* Decorative line */}
+            <motion.div
+              className="mt-8 h-1 w-20 rounded-full gradient-coral"
+              initial={{ scaleX: 0, originX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            />
+          </div>
 
           {/* Right - Carousel */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative perspective-[1200px]"
           >
-            <div className="relative overflow-hidden rounded-xl">
-              {items.map((item, i) => (
+            <div className="relative overflow-hidden rounded-2xl min-h-[420px]">
+              <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
-                  key={item.heading}
-                  className={`${i === current ? "block" : "hidden"}`}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={i === current ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.5 }}
+                  key={current}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="absolute inset-0"
                 >
-                  <div className="glass-card rounded-xl overflow-hidden group cursor-pointer hover:glow-gold transition-shadow duration-500">
-                    <div className="relative h-64 overflow-hidden">
+                  <motion.div
+                    className="glass-card rounded-2xl overflow-hidden group cursor-pointer h-full shadow-elevated"
+                    whileHover={{ y: -5, boxShadow: "0 25px 60px hsl(12 80% 55% / 0.12)" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative h-56 overflow-hidden">
                       <img
-                        src={item.image}
-                        alt={item.heading}
+                        src={items[current].image}
+                        alt={items[current].heading}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                      {/* Number badge */}
+                      <div className="absolute top-4 right-4 w-10 h-10 rounded-full gradient-coral flex items-center justify-center text-primary-foreground font-body font-bold text-sm">
+                        {String(current + 1).padStart(2, "0")}
+                      </div>
                     </div>
-                    <div className="p-6">
+                    <div className="p-8">
                       <h3 className="font-heading text-2xl font-bold text-foreground mb-3 animated-underline">
-                        {item.heading}
+                        {items[current].heading}
                       </h3>
                       <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                        {item.description}
+                        {items[current].description}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
-              ))}
+              </AnimatePresence>
             </div>
 
             {/* Navigation */}
-            <div className="flex gap-3 mt-6 justify-center">
-              <button
+            <div className="flex gap-3 mt-8 justify-center items-center">
+              <motion.button
                 onClick={prev}
-                className="p-2 glass-card rounded-full hover:glow-gold transition-all duration-300 text-foreground"
+                className="p-3 glass-card rounded-full text-foreground shadow-elevated"
+                whileHover={{ scale: 1.1, boxShadow: "0 4px 20px hsl(12 80% 55% / 0.2)" }}
+                whileTap={{ scale: 0.9 }}
               >
-                <ChevronLeft size={20} />
-              </button>
-              <div className="flex items-center gap-2">
+                <ChevronLeft size={18} />
+              </motion.button>
+              <div className="flex items-center gap-2 mx-4">
                 {items.map((_, i) => (
-                  <button
+                  <motion.button
                     key={i}
-                    onClick={() => setCurrent(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      i === current ? "w-8 gradient-gold" : "w-2 bg-muted"
-                    }`}
+                    onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                    className="h-2 rounded-full transition-colors duration-300"
+                    animate={{
+                      width: i === current ? 32 : 8,
+                      backgroundColor: i === current ? "hsl(12 80% 55%)" : "hsl(180 8% 85%)",
+                    }}
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
                   />
                 ))}
               </div>
-              <button
+              <motion.button
                 onClick={next}
-                className="p-2 glass-card rounded-full hover:glow-gold transition-all duration-300 text-foreground"
+                className="p-3 glass-card rounded-full text-foreground shadow-elevated"
+                whileHover={{ scale: 1.1, boxShadow: "0 4px 20px hsl(12 80% 55% / 0.2)" }}
+                whileTap={{ scale: 0.9 }}
               >
-                <ChevronRight size={20} />
-              </button>
+                <ChevronRight size={18} />
+              </motion.button>
             </div>
           </motion.div>
         </div>
