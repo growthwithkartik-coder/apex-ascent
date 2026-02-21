@@ -29,8 +29,8 @@ const EventMembership = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section ref={ref} className="py-28 px-4 md:px-8 lg:px-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section ref={ref} className="py-28 px-4 overflow-hidden">
+      <div className="w-[90%] max-w-[1600px] mx-auto">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -40,12 +40,12 @@ const EventMembership = () => {
           <span className="px-4 py-1.5 rounded-full text-xs font-body font-semibold tracking-widest uppercase text-warm-gold border border-warm-gold/20 mb-4 inline-block">
             Exclusive
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-heading text-4xl md:text-6xl font-bold text-foreground">
             Membership <span className="text-gradient-coral">Program</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
           {/* Accordion */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -62,9 +62,9 @@ const EventMembership = () => {
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-                  className="w-full flex items-center justify-between p-5 text-left"
+                  className="w-full flex items-center justify-between p-6 text-left"
                 >
-                  <span className={`font-heading text-lg font-semibold transition-colors ${
+                  <span className={`font-heading text-xl font-semibold transition-colors ${
                     openIndex === i ? "text-warm-gold" : "text-foreground"
                   }`}>
                     {item.title}
@@ -73,7 +73,7 @@ const EventMembership = () => {
                     animate={{ rotate: openIndex === i ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown size={20} className={openIndex === i ? "text-warm-gold" : "text-muted-foreground"} />
+                    <ChevronDown size={22} className={openIndex === i ? "text-warm-gold" : "text-muted-foreground"} />
                   </motion.div>
                 </button>
                 <AnimatePresence>
@@ -84,7 +84,7 @@ const EventMembership = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.4 }}
                     >
-                      <p className="px-5 pb-5 font-body text-muted-foreground text-sm leading-relaxed">
+                      <p className="px-6 pb-6 font-body text-muted-foreground text-base leading-relaxed">
                         {item.content}
                       </p>
                     </motion.div>
@@ -101,9 +101,8 @@ const EventMembership = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <img src={membershipImg} alt="VIP Membership" className="w-full h-[500px] object-cover rounded-2xl" />
+            <img src={membershipImg} alt="VIP Membership" className="w-full h-[560px] object-cover rounded-2xl" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/40 to-transparent rounded-2xl" />
-            {/* Gold glow overlay */}
             <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-warm-gold/10 blur-3xl" />
             <div className="absolute -top-10 -left-10 w-36 h-36 rounded-full bg-warm-gold/10 blur-3xl" />
           </motion.div>

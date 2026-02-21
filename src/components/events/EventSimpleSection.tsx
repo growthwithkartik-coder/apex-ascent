@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 const EventSimpleSection = () => {
   return (
     <section className="py-32 px-4 text-center relative overflow-hidden">
-      {/* Background accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-warm-gold/5 blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl mx-auto">
@@ -36,7 +35,7 @@ const EventSimpleSection = () => {
         </motion.p>
 
         <motion.button
-          className="px-12 py-5 rounded-xl gradient-warm font-body font-bold text-foreground text-lg glow-gold"
+          className="px-12 py-5 rounded-xl btn-gold font-body font-bold text-lg"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

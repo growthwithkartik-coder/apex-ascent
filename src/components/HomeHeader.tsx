@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "M&M", href: "/" },
+  { label: "Events", href: "/events" },
   { label: "Corporate", href: "/events" },
   { label: "Wedding", href: "/events" },
-  { label: "Events", href: "/events" },
 ];
 
-const EventHeader = () => {
+const HomeHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -32,8 +32,7 @@ const EventHeader = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <Link to="/events" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-lg gradient-warm flex items-center justify-center font-heading font-bold text-foreground text-lg">
             D
           </div>
@@ -44,7 +43,6 @@ const EventHeader = () => {
           </span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -63,15 +61,11 @@ const EventHeader = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Book Now
+            Contact Us
           </motion.button>
         </nav>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
+        <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? (
             <X className={scrolled ? "text-primary-foreground" : "text-foreground"} />
           ) : (
@@ -80,7 +74,6 @@ const EventHeader = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <motion.div
           className="md:hidden bg-slate-deep/95 backdrop-blur-xl border-t border-warm-gold/10 px-6 pb-6"
@@ -98,7 +91,7 @@ const EventHeader = () => {
             </Link>
           ))}
           <button className="mt-4 w-full px-5 py-3 rounded-lg btn-gold font-body font-semibold">
-            Book Now
+            Contact Us
           </button>
         </motion.div>
       )}
@@ -106,4 +99,4 @@ const EventHeader = () => {
   );
 };
 
-export default EventHeader;
+export default HomeHeader;
