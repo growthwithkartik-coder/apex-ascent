@@ -30,7 +30,7 @@ const EventFeatureCarousel = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-warm-gold/5 blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="w-[90%] max-w-[1600px] mx-auto relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -41,13 +41,13 @@ const EventFeatureCarousel = () => {
           <span className="px-4 py-1.5 rounded-full text-xs font-body font-semibold tracking-widest uppercase text-warm-gold border border-warm-gold/20 mb-4 inline-block">
             Features
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-heading text-4xl md:text-6xl font-bold text-foreground">
             What Makes Us <span className="text-gradient-coral">Different</span>
           </h2>
         </motion.div>
 
-        {/* 3D Perspective Carousel */}
-        <div className="relative flex items-center justify-center" style={{ perspective: "1200px", height: "480px" }}>
+        {/* 3D Perspective Carousel — enlarged */}
+        <div className="relative flex items-center justify-center" style={{ perspective: "1200px", height: "580px" }}>
           {features.map((item, i) => {
             const offset = i - active;
             const absOffset = Math.abs(offset);
@@ -56,28 +56,28 @@ const EventFeatureCarousel = () => {
             return (
               <motion.div
                 key={i}
-                className="absolute w-[280px] md:w-[340px] cursor-pointer"
+                className="absolute w-[340px] md:w-[440px] cursor-pointer"
                 animate={{
-                  x: offset * 200,
+                  x: offset * 260,
                   z: -absOffset * 120,
                   rotateY: offset * -8,
-                  scale: 1 - absOffset * 0.12,
-                  opacity: 1 - absOffset * 0.35,
+                  scale: 1 - absOffset * 0.1,
+                  opacity: 1 - absOffset * 0.3,
                   zIndex: 10 - absOffset,
                 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 onClick={() => setActive(i)}
               >
                 <div className="glass-card rounded-2xl overflow-hidden shadow-elevated group">
-                  <div className="relative h-52 overflow-hidden">
+                  <div className="relative h-64 md:h-72 overflow-hidden">
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-heading text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                    <p className="font-body text-muted-foreground text-sm mb-4">{item.desc}</p>
+                  <div className="p-8">
+                    <h3 className="font-heading text-xl font-bold text-foreground mb-3">{item.title}</h3>
+                    <p className="font-body text-muted-foreground text-base mb-5">{item.desc}</p>
                     <motion.button
-                      className="text-sm font-body font-semibold text-warm-gold hover:text-warm-gold-dark transition-colors"
+                      className="text-base font-body font-semibold text-warm-gold hover:text-warm-gold-dark transition-colors"
                       whileHover={{ x: 4 }}
                     >
                       {item.cta} →
@@ -90,12 +90,12 @@ const EventFeatureCarousel = () => {
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-10">
           {features.map((_, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-400 ${i === active ? "bg-warm-gold scale-125" : "bg-muted"}`}
+              className={`w-3 h-3 rounded-full transition-all duration-400 ${i === active ? "bg-warm-gold scale-125" : "bg-muted"}`}
             />
           ))}
         </div>

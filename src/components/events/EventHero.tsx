@@ -81,7 +81,7 @@ const EventHero = () => {
               {slides[current].sub}
             </p>
             <motion.button
-              className="px-10 py-4 rounded-xl gradient-warm font-body font-semibold text-foreground text-lg glow-gold"
+              className="px-10 py-4 rounded-xl btn-gold font-body font-semibold text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
