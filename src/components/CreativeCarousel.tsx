@@ -9,29 +9,33 @@ import digitalMedia from "@/assets/digital-media.jpg";
 const items = [
   {
     image: brandAssociation,
-    heading: "Strategic Alliances",
-    description: "Building powerful partnerships that redefine industry standards and drive exponential growth.",
+    heading: "Choose Your Service",
+    description:
+      "Select from brand development, marketing, print & electronic media, or third-party manufacturing tailored to your needs.",
     color: "from-coral to-coral-light",
   },
   {
     image: ventureCapital,
-    heading: "Capital Solutions",
-    description: "Innovative funding models designed to fuel brand ambition and maximize return potential.",
+    heading: "Connect With Us",
+    description:
+      "Reach out to Demigod House via our website, email, or phone. Share your vision, and let us guide you forward.",
     color: "from-teal to-teal-light",
   },
   {
     image: eventManagement,
-    heading: "Experiential Events",
-    description: "Immersive brand experiences that captivate audiences and create lasting impressions.",
+    heading: "Proposal Evaluation",
+    description:
+      "We'll review your proposal, and if it aligns with our expertise, we'll contact you to discuss next steps.",
     color: "from-warm-gold to-warm-gold-dark",
   },
   {
     image: digitalMedia,
-    heading: "Digital Dominance",
-    description: "Data-driven digital strategies that amplify brand presence across every touchpoint.",
+    heading: "In-Person Meeting",
+    description:
+      "Meet with us to finalize registration, legal documentation, and discuss seed funding opportunities (if applicable).",
     color: "from-coral to-teal",
   },
-];
+];;
 
 const CreativeCarousel = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,11 +56,11 @@ const CreativeCarousel = () => {
           <div className="inline-block mb-4 px-3 py-1 rounded-full text-xs font-body font-semibold tracking-wider uppercase text-secondary border border-secondary/20">
             Portfolio
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Our <span className="text-gradient-teal">Expertise</span>
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-4xl font-bold mb-4">
+            <span className="gradient-text fs-2">Demigod House</span>: Your Strategic Partner in Event Management, Media, and Marketing
           </h2>
-          <p className="font-body text-muted-foreground max-w-2xl text-lg">
-            A curated portfolio of capabilities that set DemiGod House apart in the industry.
+          <p className="font-body text-muted-foreground  text-lg">
+            At Demigod House, we make collaboration seamless and impactful. Start by choosing from our tailored services, including brand development, marketing, print and electronic media, or third-party manufacturing. Connect with us via our website, email, or phone to share your vision and let our experts guide you. Once you submit a proposal, we’ll evaluate it to ensure alignment with our expertise and contact you to discuss next steps. For finalization, join us for an in-person meeting to complete registration, legal documentation, and explore potential seed funding opportunities. Together, we turn ideas into success stories.
           </p>
           <motion.div
             className="mt-6 h-1 w-20 rounded-full gradient-teal"

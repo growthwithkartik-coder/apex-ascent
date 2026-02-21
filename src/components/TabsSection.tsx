@@ -1,39 +1,114 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Check } from "lucide-react";
-import ventureCapital from "@/assets/venture-capital.jpg";
-import eventManagement from "@/assets/event-management.jpg";
-import digitalMedia from "@/assets/digital-media.jpg";
-import manufacturing from "@/assets/manufacturing.jpg";
+import brandAssociation from "@/assets/home/brand_association.webp";
+import brandDevelopment from "@/assets/home/Brand_Development.webp";
+import ventureCapital from "@/assets/home/venture_capital.webp";
+import brandMarketing from "@/assets/home/brand_marketing.jpeg";
+import contractManufacturing from "@/assets/home/contract_manufacturing.webp";
+import seedFunding from "@/assets/home/brand_seed_funding.webp";
+import events from "@/assets/home/b2b_b2c_events.webp";
 
 const tabs = [
   {
+    label: "Brand Association",
+    image: brandAssociation,
+    heading: "Brand Association",
+    description:
+      "Amplifying brand visibility with strategic, high-impact advertising campaigns that ensure maximum reach, engagement, and conversions across global markets. We integrate traditional, digital, and experiential advertising techniques to position brands at the forefront of consumer attention and market influence.",
+    points: [
+      "End-to-end Brand Marketing, Strategizing, Development & Capital Procurement solutions.",
+      "Powerhouse of strategic marketing and global brand elevation.",
+      "Collaboration with industrial leaders to redefine market dominance.",
+      "Luxury-driven, influence-focused brand positioning with scale.",
+      "Strategic alignment of marketing resources to elevate product sales and long-term revenue growth.",
+    ],
+  },
+  {
+    label: "Brand Development",
+    image: brandDevelopment,
+    heading: "Brand Development",
+    description:
+      "Articulating, designing and curating a strategic brand market image reflecting consumer demand DNA while structuring brand products and services for global positioning.",
+    points: [
+      "Guaranteed retail participation of 50M+ consumers via B2B/B2C events and commerce channels.",
+      "Time-tested strategic marketing driven by global research & analysis.",
+      "ATL/BTL execution across print & digital media adapting to market cycles.",
+      "Exclusive competitive positioning aligned with evolving consumer demand.",
+      "Full creative liberty with funding-backed execution strategy.",
+      "Campaign execution across 90+ countries through media associates.",
+    ],
+  },
+  {
     label: "Venture Capital",
     image: ventureCapital,
-    heading: "Strategic Capital Deployment",
-    description: "Our venture capital arm identifies and nurtures high-potential brands, providing not just funding but strategic guidance to accelerate growth.",
-    points: ["Seed to Series B funding support", "Strategic brand growth partnerships", "Revenue sharing models", "Portfolio management & advisory"],
+    heading: "Venture Capital",
+    description:
+      "We bridge innovation with strategic funding, empowering businesses through seed investments, growth-stage financing, private equity structuring and scalable financial frameworks.",
+    points: [
+      "End-to-end VC solutions: Seed, Growth, Private Equity & Exit Strategies.",
+      "Strategic capital syndication with institutional & angel networks.",
+      "High-value exit planning and equity appreciation models.",
+      "Financial scalability aligned with long-term enterprise growth.",
+      "Structured capital infusion for dominant market presence.",
+    ],
   },
   {
-    label: "Event Management",
-    image: eventManagement,
-    heading: "World-Class Events",
-    description: "From intimate B2B summits to large-scale consumer events, we craft unforgettable experiences that elevate brands and forge lasting connections.",
-    points: ["B2B & B2C event production", "Private & corporate galas", "Brand activation events", "Full-service event logistics"],
+    label: "Brand Marketing",
+    image: brandMarketing,
+    heading: "Brand Marketing",
+    description:
+      "We curate high-impact marketing strategies that establish sectoral leadership and create immersive consumer experiences across competitive global landscapes.",
+    points: [
+      "Market-research driven execution aligned with global trends.",
+      "Integrated global print & electronic media campaigns.",
+      "Network across 65+ countries including traders & retail ecosystems.",
+      "Data-backed demographic targeting strategies.",
+      "Proven client retention with zero discontinuation history.",
+    ],
   },
   {
-    label: "Digital Media",
-    image: digitalMedia,
-    heading: "Digital-First Marketing",
-    description: "Leverage cutting-edge digital strategies to amplify your brand's reach across all platforms with data-driven precision.",
-    points: ["Social media campaigns", "Content strategy & creation", "Performance marketing", "Analytics & ROI tracking"],
-  },
-  {
-    label: "Manufacturing",
-    image: manufacturing,
+    label: "Contract Manufacturing",
+    image: contractManufacturing,
     heading: "Contract Manufacturing",
-    description: "End-to-end manufacturing solutions that maintain the highest quality standards while optimizing production costs.",
-    points: ["Third-party manufacturing", "Quality assurance protocols", "Supply chain optimization", "Scalable production capacity"],
+    description:
+      "Structuring brand products & services aligned with consumer demand DNA while building seamless third-party partnerships for commercial expansion.",
+    points: [
+      "Global 3rd party manufacturing partnerships across developed & developing economies.",
+      "Diversified sectors: Automotive, Gems, Jewellery, FMCG, Pharma, IT, Real Estate & more.",
+      "Permanent long-term manufacturing alliances.",
+      "Strategic collaboration between brands & industrial manufacturers.",
+      "Dedicated channel partnership ecosystem.",
+    ],
+  },
+  {
+    label: "Brand Seed Funding",
+    image: seedFunding,
+    heading: "Brand Seed Funding",
+    description:
+      "Providing structured funding frameworks of up to $500M to transition visionary brands into market-dominant enterprises through strategic execution.",
+    points: [
+      "Up to $500 Million structured investment support.",
+      "Operational presence across G20, ASEAN & BRICS corridors.",
+      "Global media-backed brand broadcasting & positioning.",
+      "Success-driven commercial finance instruments.",
+      "Global stock exchange listing platforms for scalable brands.",
+    ],
+  },
+  {
+    label: "B2B & B2C Events",
+    image: events,
+    heading: "B2B & B2C Events",
+    description:
+      "Designing high-impact global events that connect industry leaders, innovators, corporations, and consumers through immersive brand-driven experiences.",
+    points: [
+      "1,600+ global events lined up through 2030.",
+      "500,000+ average strategic participation base.",
+      "Digital hosting & management services worldwide.",
+      "High-level networking platforms for decision-makers.",
+      "End-to-end event production & engagement execution.",
+      "Technology-integrated interactive experiences.",
+    ],
   },
 ];
 

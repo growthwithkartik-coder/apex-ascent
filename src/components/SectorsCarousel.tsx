@@ -1,29 +1,59 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
-import serviceSelection from "@/assets/service-selection.jpg";
-import connectWithUs from "@/assets/connect-with-us.jpg";
-import proposalEvaluation from "@/assets/proposal-evaluation.jpg";
+import automotive from "../assets/home/Automotive.webp";
+import realEstate from "../assets/home/Real_estate.webp";
+import eventManagement from "../assets/home/Event_management.webp";
+import jewellery from "../assets/home/Jewellery.webp";
+import gems from "../assets/home/gems.webp";
+import pharmaOTC from "../assets/home/Pharma_OTC.webp";
+import fmcg from "../assets/home/Fmcg.webp";
 
-const items = [
+const items = 
+  [
   {
-    img: serviceSelection,
-    name: "Choose Your Service",
-    desc: "Select from brand development, marketing, print & electronic media, or third-party manufacturing tailored to your needs.",
+    img: automotive, // import this
+    name: "Automotive",
+    desc: "We create marketing strategies that drive awareness and sales for automotive brands, focusing on both traditional and digital marketing approaches.",
     step: "01",
   },
   {
-    img: connectWithUs,
-    name: "Connect With Us",
-    desc: "Reach out to Demigod House via our website, email, or phone. Share your vision, and let us guide you forward.",
+    img: realEstate,
+    name: "Real Estate",
+    desc: "Our real estate marketing strategies use the latest tools to connect potential buyers with properties, resulting in higher conversions and faster sales cycles.",
     step: "02",
   },
   {
-    img: proposalEvaluation,
-    name: "Proposal Evaluation",
-    desc: "We'll review your proposal, and if it aligns with our expertise, we'll contact you to discuss next steps.",
+    img: eventManagement,
+    name: "Event Management",
+    desc: "From corporate events to large-scale consumer experiences, we craft memorable moments that resonate with attendees, ensuring a lasting impression.",
     step: "03",
   },
+  {
+    img: jewellery,
+    name: "Jewellery",
+    desc: "Our expertise in jewellery marketing ensures an impactful presence, driving brand recognition and engagement with affluent clientele.",
+    step: "04",
+  },
+  {
+    img: gems,
+    name: "Gems",
+    desc: "We provide bespoke solutions for the gemstone industry, leveraging creativity and innovation to elevate brand positioning and visibility.",
+    step: "05",
+  },
+  {
+    img: pharmaOTC,
+    name: "Pharma OTC",
+    desc: "Our tailored marketing and event management services promote OTC products with a focus on customer trust and long-term growth.",
+    step: "06",
+  },
+  {
+    img: fmcg,
+    name: "FMCG",
+    desc: "We help FMCG brands establish dominance through strategic campaigns that increase market penetration and brand loyalty.",
+    step: "07",
+  },
 ];
+
 
 const SectorsCarousel = () => {
   const ref = useRef<HTMLDivElement>(null);

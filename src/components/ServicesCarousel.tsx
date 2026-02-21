@@ -1,26 +1,72 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import brandAssociation from "@/assets/brand-association.jpg";
-import brandDevelopment from "@/assets/brand-development.jpg";
-import brandMarketing from "@/assets/brand-marketing.jpg";
+import brandAssociation from "../assets/home/brand_association.webp";
+import brandDevelopment from "../assets/home/Brand_Development.webp";
+import brandMarketing from "../assets/home/brand_marketing.jpeg";
+import printMedia from "../assets/home/PRINT_MEDIA_MARKETING.webp";
+import seedFunding from "../assets/home/brand_seed_funding.webp";
+import privateEquity from "../assets/home/Brand_Private_Equity_Offering.jpeg";
+import events from "../assets/home/b2b_b2c_events.webp";
+import startups from "../assets/home/startups.jpeg";
+import hybrid from "../assets/home/hybrid.jpeg";
+
 
 const items = [
-  {
-    heading: "Brand Association",
-    description: "Our flagship offerings include Brand Association and Capital Procurement—where we collaborate with industrial leaders to fuel strategic brand growth and redefine market dominance.",
-    image: brandAssociation,
-  },
-  {
-    heading: "Brand Development",
-    description: "We specialize in crafting compelling brand identities that resonate with your target audience. From brand positioning to storytelling, our strategies help establish a strong and lasting presence in the market.",
-    image: brandDevelopment,
-  },
-  {
-    heading: "Marketing",
-    description: "Our expert marketing solutions span digital, traditional, and innovative strategies to connect brands with their audience effectively. Whether it's campaign management or analytics, we deliver measurable results.",
-    image: brandMarketing,
-  },
+ {
+            heading: "Brand Association",
+            description:
+                "Our flagship offerings include Brand Association and Capital Procurement—where we collaborate with industrial leaders to fuel strategic brand growth and redefine market dominance.",
+            image: brandAssociation
+        },
+        {
+            heading: "Brand Development",
+            description:
+                "We specialize in crafting compelling brand identities that resonate with your target audience. From brand positioning to storytelling, our strategies help establish a strong and lasting presence in the market.",
+            image: brandDevelopment
+        },
+        {
+            heading: "Marketing",
+            description:
+                "Our expert marketing solutions span digital, traditional, and innovative strategies to connect brands with their audience effectively. Whether it's campaign management or analytics, we deliver measurable results.",
+            image: brandMarketing
+        },
+        {
+            heading: "Print & Electronic Media",
+            description:
+                "Partnering with top-tier media outlets worldwide, we provide unmatched visibility for your brand through expertly curated content in both print and electronic formats.",
+            image: printMedia
+        },
+        {
+            heading: "Brand Seed Funding",
+            description:
+                "We support emerging brands by facilitating seed funding opportunities. Our network of investors and industry experts ensures the financial backing needed to turn visionary ideas into reality.",
+            image: seedFunding
+        },
+        {
+            heading: "Brand Private Equity Offering",
+            description:
+                "DemiGod House assists brands in accessing private equity markets, offering strategic advice and execution to fuel growth and expansion.",
+            image: privateEquity
+        },
+        {
+            heading: "B2B & B2C Events",
+            description:
+                "As part of outdoor-marketing campaign, we organize and manage variety of B2B & B2C events for brands direct interactions with their consumers via our events globally.",
+            image: events
+        },
+        {
+            heading: "From Startups to Multinationals",
+            description:
+                "At Demigod House, we cater to businesses of all sizes. Whether you're a budding startup or a global multinational, our expertise ensures tailored strategies that drive growth and success across industries.",
+            image:startups
+        },
+        {
+            heading: "Hybrid Environments",
+            description:
+                "We embrace the future of work and collaboration by fostering hybrid environments. Our solutions bridge physical and digital spaces, enabling seamless operations and connectivity for your business.",
+            image:hybrid
+        },
 ];
 
 const ServicesCarousel = () => {
