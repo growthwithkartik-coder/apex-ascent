@@ -1,105 +1,104 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import hero1 from "@/assets/events/hero-event-1.jpg";
-import hero2 from "@/assets/events/hero-event-2.jpg";
-import hero3 from "@/assets/events/hero-event-3.jpg";
-
-const slides = [
-  {
-    image: hero1,
-    headline: "Unforgettable Corporate Galas",
-    sub: "Where luxury meets strategy — creating powerful experiences that leave lasting impressions on every guest.",
-  },
-  {
-    image: hero2,
-    headline: "Dream Weddings, Perfectly Crafted",
-    sub: "From intimate ceremonies to grand celebrations, we orchestrate every moment with elegance and precision.",
-  },
-  {
-    image: hero3,
-    headline: "World-Class Conferences & Summits",
-    sub: "Elevating corporate events with cutting-edge production, premium staging, and flawless execution.",
-  },
-];
+import { motion } from "framer-motion";
+import { Calendar, MapPin, ChevronDown } from "lucide-react";
 
 const EventHero = () => {
-  const [current, setCurrent] = useState(0);
-
-  const next = useCallback(() => setCurrent((p) => (p + 1) % slides.length), []);
-  const prev = useCallback(() => setCurrent((p) => (p - 1 + slides.length) % slides.length), []);
-
-  useEffect(() => {
-    const timer = setInterval(next, 6000);
-    return () => clearInterval(timer);
-  }, [next]);
+  const words = ["Premium", "Tech", "Conference", "2026"];
 
   return (
-    <section className="relative h-screen overflow-hidden">
-      <AnimatePresence mode="wait">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated background orbs */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20" style={{ background: "hsl(260 85% 65%)" }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[100px] opacity-15" style={{ background: "hsl(220 90% 60%)" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] opacity-10" style={{ background: "hsl(280 80% 60%)" }} />
+      </div>
+
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `linear-gradient(hsl(260 85% 65% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(260 85% 65% / 0.3) 1px, transparent 1px)`,
+        backgroundSize: "60px 60px"
+      }} />
+
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+        {/* Badge */}
         <motion.div
-          key={current}
-          className="absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full ev-glass mb-8"
         >
-          <img src={slides[current].image} alt={slides[current].headline} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-deep via-slate-deep/60 to-slate-deep/30" />
+          <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "hsl(260 85% 65%)" }} />
+          <span className="font-body text-sm tracking-wider uppercase" style={{ color: "hsl(260 90% 75%)" }}>
+            Demigod House Events
+          </span>
         </motion.div>
-      </AnimatePresence>
 
-      {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl"
-          >
-            <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-6 leading-tight">
-              {slides[current].headline}
-            </h1>
-            <p className="font-body text-primary-foreground/70 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-              {slides[current].sub}
-            </p>
-            <button className="px-10 py-4 rounded-xl btn-gold font-body font-semibold text-lg hover:scale-105 transition-transform">
-              Book Now
-            </button>
-          </motion.div>
-        </AnimatePresence>
+        {/* Animated headline */}
+        <div className="mb-6">
+          {words.map((word, i) => (
+            <motion.span
+              key={word}
+              className="inline-block font-heading text-5xl md:text-7xl lg:text-8xl font-bold mr-4 md:mr-6"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.12 }}
+              style={{ color: i === 3 ? undefined : "hsl(0 0% 95%)" }}
+            >
+              {i === 3 ? <span className="ev-gradient-text">{word}</span> : word}
+            </motion.span>
+          ))}
+        </div>
+
+        {/* Subtitle */}
+        <motion.p
+          className="font-body text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          style={{ color: "hsl(240 10% 60%)" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+        >
+          Join industry leaders for an immersive experience of innovation, networking, and world-class entertainment.
+        </motion.p>
+
+        {/* Date & Location badges */}
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-4 mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.85 }}
+        >
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full ev-glass">
+            <Calendar size={16} style={{ color: "hsl(260 85% 65%)" }} />
+            <span className="font-body text-sm" style={{ color: "hsl(0 0% 80%)" }}>March 15-17, 2026</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full ev-glass">
+            <MapPin size={16} style={{ color: "hsl(260 85% 65%)" }} />
+            <span className="font-body text-sm" style={{ color: "hsl(0 0% 80%)" }}>Mumbai, India</span>
+          </div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.button
+          className="ev-btn px-10 py-4 rounded-xl font-body font-bold text-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          Register Now
+        </motion.button>
       </div>
 
-      {/* Arrows */}
-      <button
-        onClick={prev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center hover:bg-warm-gold/20 transition-colors"
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
       >
-        <ChevronLeft className="text-primary-foreground" />
-      </button>
-      <button
-        onClick={next}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center hover:bg-warm-gold/20 transition-colors"
-      >
-        <ChevronRight className="text-primary-foreground" />
-      </button>
-
-      {/* Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              i === current ? "w-12 bg-warm-gold" : "w-6 bg-primary-foreground/30"
-            }`}
-          />
-        ))}
-      </div>
+        <span className="font-body text-xs tracking-widest uppercase" style={{ color: "hsl(240 10% 40%)" }}>Scroll</span>
+        <ChevronDown size={20} style={{ color: "hsl(240 10% 40%)" }} />
+      </motion.div>
     </section>
   );
 };

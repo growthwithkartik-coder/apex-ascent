@@ -2,34 +2,31 @@ import EventHeader from "@/components/events/EventHeader";
 import EventHero from "@/components/events/EventHero";
 import EventSplitSection from "@/components/events/EventSplitSection";
 import EventShowcaseCarousel from "@/components/events/EventShowcaseCarousel";
-import EventMembership from "@/components/events/EventMembership";
 import EventFeatureCarousel from "@/components/events/EventFeatureCarousel";
+import EventMembership from "@/components/events/EventMembership";
 import EventSimpleSection from "@/components/events/EventSimpleSection";
 import EventExpoCarousel from "@/components/events/EventExpoCarousel";
+import EventRegistration from "@/components/events/EventRegistration";
+import EventFAQ from "@/components/events/EventFAQ";
 import Footer from "@/components/Footer";
 
 const Events = () => {
   return (
-    <>
+    <div className="event-dark">
       <EventHeader />
-      <main className="bg-background min-h-screen">
+      <main className="min-h-screen">
         <EventHero />
-        <div className="section-divider" />
         <EventSplitSection />
-        <div className="section-divider" />
         <EventShowcaseCarousel />
-        <div className="section-divider" />
-        <EventMembership />
-        <div className="section-divider" />
         <EventFeatureCarousel />
-        <div className="section-divider" />
+        <EventMembership />
         <EventSimpleSection />
-        <div className="section-divider" />
         <EventExpoCarousel />
-        <div className="section-divider" />
+        <EventRegistration />
+        <EventFAQ />
         <Footer />
       </main>
-    </>
+    </div>
   );
 };
 

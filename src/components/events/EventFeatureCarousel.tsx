@@ -1,94 +1,71 @@
-import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import eventGala from "@/assets/events/event-gala.jpg";
+import eventLaunch from "@/assets/events/event-launch.jpg";
 import eventWedding from "@/assets/events/event-wedding.jpg";
-import eventNetworking from "@/assets/events/event-networking.jpg";
-import eventAwards from "@/assets/events/event-awards.jpg";
 import eventFestival from "@/assets/events/event-festival.jpg";
 
-const features = [
-  { image: eventGala, title: "Bespoke Dining Experiences", desc: "Curated menus by Michelin-starred chefs with personalized table settings.", cta: "Learn More" },
-  { image: eventWedding, title: "Luxury Venue Curation", desc: "Access to the world's most prestigious and exclusive event venues.", cta: "Explore Venues" },
-  { image: eventNetworking, title: "VIP Concierge Services", desc: "24/7 dedicated event concierge for seamless guest experiences.", cta: "Get Started" },
-  { image: eventAwards, title: "Live Entertainment", desc: "World-class performers, DJs, and artists for unforgettable moments.", cta: "Book Artists" },
-  { image: eventFestival, title: "Tech-Forward Production", desc: "Cutting-edge AV, lighting, and immersive technology installations.", cta: "See Portfolio" },
+const speakers = [
+  { image: eventGala, name: "Arjun Kapoor", role: "CEO, TechVista Global", topic: "Future of AI in Events" },
+  { image: eventLaunch, name: "Priya Sharma", role: "Creative Director, Luxe Co.", topic: "Design Thinking for Impact" },
+  { image: eventWedding, name: "Ravi Mehta", role: "Founder, InnovateLab", topic: "Building Tomorrow's Experiences" },
+  { image: eventFestival, name: "Ananya Desai", role: "VP Marketing, BrandForce", topic: "The Art of Storytelling" },
 ];
 
-const EventFeatureCarousel = () => {
-  const [active, setActive] = useState(0);
-  const next = useCallback(() => setActive((p) => (p + 1) % features.length), []);
-  const prev = useCallback(() => setActive((p) => (p - 1 + features.length) % features.length), []);
-
-  useEffect(() => {
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [next]);
-
+const EventSpeakers = () => {
   return (
-    <section className="py-24 px-4 overflow-hidden">
-      <div className="w-[90%] max-w-[1600px] mx-auto">
+    <section className="py-24 px-4">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          <span className="px-4 py-1.5 rounded-full text-xs font-body font-semibold tracking-widest uppercase text-warm-gold border border-warm-gold/20 mb-4 inline-block">
-            Features
+          <span className="font-body text-sm tracking-widest uppercase mb-4 block" style={{ color: "hsl(260 85% 65%)" }}>
+            Speakers
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground">
-            What Makes Us <span className="text-gradient-coral">Different</span>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold" style={{ color: "hsl(0 0% 95%)" }}>
+            Meet Our <span className="ev-gradient-text">Speakers</span>
           </h2>
         </motion.div>
 
-        {/* Simple sliding carousel */}
-        <div className="relative overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-out gap-6"
-            style={{ transform: `translateX(-${active * 340}px)` }}
-          >
-            {features.map((item, i) => (
-              <div
-                key={i}
-                className={`flex-shrink-0 w-[320px] md:w-[400px] rounded-2xl overflow-hidden border transition-all duration-300 ${
-                  i === active ? "border-warm-gold/30" : "border-border"
-                }`}
-              >
-                <div className="relative h-56 md:h-64 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-                </div>
-                <div className="p-6 bg-card">
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                  <p className="font-body text-muted-foreground text-sm mb-4">{item.desc}</p>
-                  <button className="text-sm font-body font-semibold text-warm-gold hover:text-warm-gold-dark transition-colors">
-                    {item.cta} →
-                  </button>
-                </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {speakers.map((speaker, i) => (
+            <motion.div
+              key={speaker.name}
+              className="group rounded-2xl overflow-hidden ev-glass"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -6 }}
+            >
+              <div className="relative h-64 overflow-hidden">
+                <img
+                  src={speaker.image}
+                  alt={speaker.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, hsl(240 20% 4%), transparent 60%)" }} />
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-4 mt-8">
-          <button onClick={prev} className="w-10 h-10 rounded-full border border-muted-foreground/20 flex items-center justify-center hover:border-warm-gold transition-colors">
-            <ChevronLeft size={18} className="text-muted-foreground" />
-          </button>
-          <div className="flex gap-2">
-            {features.map((_, i) => (
-              <button key={i} onClick={() => setActive(i)} className={`h-1 rounded-full transition-all duration-300 ${i === active ? "w-8 bg-warm-gold" : "w-4 bg-muted"}`} />
-            ))}
-          </div>
-          <button onClick={next} className="w-10 h-10 rounded-full border border-muted-foreground/20 flex items-center justify-center hover:border-warm-gold transition-colors">
-            <ChevronRight size={18} className="text-muted-foreground" />
-          </button>
+              <div className="p-5 -mt-8 relative z-10">
+                <h3 className="font-heading text-lg font-bold" style={{ color: "hsl(0 0% 95%)" }}>
+                  {speaker.name}
+                </h3>
+                <p className="font-body text-xs mb-2" style={{ color: "hsl(260 85% 65%)" }}>
+                  {speaker.role}
+                </p>
+                <p className="font-body text-sm" style={{ color: "hsl(240 10% 55%)" }}>
+                  {speaker.topic}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default EventFeatureCarousel;
+export default EventSpeakers;

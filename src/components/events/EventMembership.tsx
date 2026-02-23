@@ -1,114 +1,78 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useRef } from "react";
-import { ChevronDown } from "lucide-react";
-import { useInView } from "framer-motion";
-import membershipImg from "@/assets/events/membership.jpg";
+import { motion } from "framer-motion";
 
-const accordionItems = [
-  {
-    title: "Benefits",
-    content: "Enjoy priority booking, exclusive venue access, dedicated event coordinators, complimentary upgrades, and VIP networking opportunities at all DemiGod House events. Members receive up to 25% off on all event packages.",
-  },
-  {
-    title: "Enrollment",
-    content: "Join our membership program through a simple application process. Submit your details online, and our team will schedule a personalized consultation to understand your event needs and assign the perfect membership tier.",
-  },
-  {
-    title: "Membership Tiers",
-    content: "Choose from Silver, Gold, and Platinum tiers — each offering escalating benefits from priority reservations to fully bespoke event curation, personal concierge services, and exclusive access to invite-only gatherings.",
-  },
-  {
-    title: "Standards",
-    content: "Every DemiGod House event adheres to the highest standards of luxury, safety, and sustainability. Our ISO-certified processes ensure impeccable execution, from venue selection to post-event follow-through.",
-  },
+const schedule = [
+  { time: "09:00 AM", title: "Registration & Welcome Coffee", desc: "Check in and connect with fellow attendees" },
+  { time: "10:00 AM", title: "Opening Keynote", desc: "Setting the vision for the future of events" },
+  { time: "11:30 AM", title: "Panel: Innovation in Experience Design", desc: "Industry leaders discuss emerging trends" },
+  { time: "01:00 PM", title: "Networking Lunch", desc: "Curated dining experience with roundtable discussions" },
+  { time: "02:30 PM", title: "Workshop: Immersive Tech", desc: "Hands-on with VR, AR, and spatial computing" },
+  { time: "04:00 PM", title: "Fireside Chat", desc: "Intimate conversation with the CEO of DemiGod House" },
+  { time: "06:00 PM", title: "Gala Dinner & Awards", desc: "Evening celebration with live entertainment" },
 ];
 
-const EventMembership = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [openIndex, setOpenIndex] = useState(0);
-
+const EventTimeline = () => {
   return (
-    <section ref={ref} className="py-24 px-4">
-      <div className="w-[90%] max-w-[1400px] mx-auto">
+    <section className="py-24 px-4">
+      <div className="max-w-3xl mx-auto">
         <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <span className="px-4 py-1.5 rounded-full text-xs font-body font-semibold tracking-widest uppercase text-warm-gold border border-warm-gold/20 mb-4 inline-block">
-            Exclusive
+          <span className="font-body text-sm tracking-widest uppercase mb-4 block" style={{ color: "hsl(260 85% 65%)" }}>
+            Schedule
           </span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground">
-            Membership <span className="text-gradient-coral">Program</span>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold" style={{ color: "hsl(0 0% 95%)" }}>
+            Event <span className="ev-gradient-text">Timeline</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Accordion */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5 }}
-            className="space-y-3"
-          >
-            {accordionItems.map((item, i) => (
-              <div
-                key={item.title}
-                className={`rounded-xl overflow-hidden border transition-colors duration-300 ${
-                  openIndex === i ? "border-warm-gold/30" : "border-border"
-                }`}
-              >
-                <button
-                  onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-                  className="w-full flex items-center justify-between p-5 text-left"
-                >
-                  <span className={`font-heading text-lg font-semibold transition-colors ${
-                    openIndex === i ? "text-warm-gold" : "text-foreground"
-                  }`}>
-                    {item.title}
-                  </span>
-                  <motion.div
-                    animate={{ rotate: openIndex === i ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <ChevronDown size={20} className={openIndex === i ? "text-warm-gold" : "text-muted-foreground"} />
-                  </motion.div>
-                </button>
-                <AnimatePresence>
-                  {openIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p className="px-5 pb-5 font-body text-muted-foreground text-sm leading-relaxed">
-                        {item.content}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </motion.div>
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px" style={{ background: "hsl(260 85% 65% / 0.2)" }} />
 
-          {/* Image */}
-          <motion.div
-            className="relative rounded-2xl overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <img src={membershipImg} alt="VIP Membership" className="w-full h-[500px] object-cover rounded-2xl" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-deep/30 to-transparent rounded-2xl" />
-          </motion.div>
+          <div className="space-y-8">
+            {schedule.map((item, i) => (
+              <motion.div
+                key={item.title}
+                className="relative flex gap-6 md:gap-8"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                {/* Dot */}
+                <div className="relative z-10 flex-shrink-0 w-12 md:w-16 flex items-start justify-center pt-1">
+                  <motion.div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: "hsl(260 85% 65%)", boxShadow: "0 0 12px hsl(260 85% 65% / 0.5)" }}
+                    whileInView={{ scale: [0.8, 1.2, 1] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="ev-glass rounded-xl p-5 flex-1 group hover:border-[hsl(260_85%_65%_/_0.3)] transition-colors duration-300">
+                  <span className="font-body text-xs font-semibold tracking-wider uppercase" style={{ color: "hsl(260 85% 65%)" }}>
+                    {item.time}
+                  </span>
+                  <h3 className="font-heading text-lg font-bold mt-1 mb-1" style={{ color: "hsl(0 0% 95%)" }}>
+                    {item.title}
+                  </h3>
+                  <p className="font-body text-sm" style={{ color: "hsl(240 10% 55%)" }}>
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default EventMembership;
+export default EventTimeline;
