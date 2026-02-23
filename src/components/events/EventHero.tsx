@@ -40,38 +40,25 @@ const EventHero = () => {
         <motion.div
           key={current}
           className="absolute inset-0"
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
         >
           <img src={slides[current].image} alt={slides[current].headline} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-deep via-slate-deep/60 to-slate-deep/30" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Glow particles */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-warm-gold/40"
-            style={{ left: `${20 + i * 15}%`, top: `${30 + i * 10}%` }}
-            animate={{ y: [0, -30, 0], opacity: [0.2, 0.8, 0.2] }}
-            transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.5 }}
-          />
-        ))}
-      </div>
-
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.8 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
             className="max-w-4xl"
           >
             <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-6 leading-tight">
@@ -80,13 +67,9 @@ const EventHero = () => {
             <p className="font-body text-primary-foreground/70 text-lg md:text-xl max-w-2xl mx-auto mb-10">
               {slides[current].sub}
             </p>
-            <motion.button
-              className="px-10 py-4 rounded-xl btn-gold font-body font-semibold text-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <button className="px-10 py-4 rounded-xl btn-gold font-body font-semibold text-lg hover:scale-105 transition-transform">
               Book Now
-            </motion.button>
+            </button>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -94,18 +77,18 @@ const EventHero = () => {
       {/* Arrows */}
       <button
         onClick={prev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center hover:bg-warm-gold/30 transition-colors"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center hover:bg-warm-gold/20 transition-colors"
       >
         <ChevronLeft className="text-primary-foreground" />
       </button>
       <button
         onClick={next}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center hover:bg-warm-gold/30 transition-colors"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 flex items-center justify-center hover:bg-warm-gold/20 transition-colors"
       >
         <ChevronRight className="text-primary-foreground" />
       </button>
 
-      {/* Slide indicators */}
+      {/* Indicators */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-3">
         {slides.map((_, i) => (
           <button

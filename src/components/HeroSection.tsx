@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
+import demigodVideo from "@/assets/home/demigod.mp4";
 import Particles from "./Particles";
 
 const HeroSection = () => {
@@ -25,7 +26,15 @@ const HeroSection = () => {
     <section ref={ref} className="relative h-screen overflow-hidden">
       {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y, scale }}>
-        <img src={heroBg} alt="Cityscape" className="w-full h-[130%] object-cover" />
+        <video
+          src={demigodVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroBg}
+          className="w-full h-[130%] object-cover"
+        />
       </motion.div>
 
       {/* Overlay */}
