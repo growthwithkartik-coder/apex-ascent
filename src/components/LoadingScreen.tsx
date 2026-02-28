@@ -9,7 +9,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
+          className="fixed inset-0 z-[100] flex items-center justify-center" style={{ background: "hsl(220 20% 4%)" }}
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >

@@ -37,7 +37,7 @@ const HomeHeader = () => {
             D
           </div>
           <span className={`font-heading text-xl font-bold transition-colors duration-300 ${
-            scrolled ? "text-primary-foreground" : "text-foreground"
+            scrolled ? "text-white" : "text-white"
           }`}>
             Demigod House
           </span>
@@ -49,7 +49,7 @@ const HomeHeader = () => {
               key={link.label}
               to={link.href}
               className={`relative font-body text-sm font-medium tracking-wide transition-colors duration-300 group ${
-                scrolled ? "text-primary-foreground/80 hover:text-warm-gold" : "text-foreground/80 hover:text-warm-gold"
+                scrolled ? "text-white/80 hover:text-warm-gold" : "text-white/80 hover:text-warm-gold"
               }`}
             >
               {link.label}
@@ -67,9 +67,9 @@ const HomeHeader = () => {
 
         <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? (
-            <X className={scrolled ? "text-primary-foreground" : "text-foreground"} />
+            <X className="text-white" />
           ) : (
-            <Menu className={scrolled ? "text-primary-foreground" : "text-foreground"} />
+            <Menu className="text-white" />
           )}
         </button>
       </div>
