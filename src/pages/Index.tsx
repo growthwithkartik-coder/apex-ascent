@@ -21,7 +21,7 @@ const Index = () => {
     <>
       <LoadingScreen isLoading={isLoading} />
       <HomeHeader />
-      <main className="bg-background min-h-screen">
+      <main className="home-dark min-h-screen">
         <HeroSection />
         <div className="section-divider" />
         <VideoSection />
