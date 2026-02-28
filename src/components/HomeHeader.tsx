@@ -37,7 +37,7 @@ const HomeHeader = () => {
             D
           </div>
           <span className={`font-heading text-xl font-bold transition-colors duration-300 ${
-            scrolled ? "text-primary-foreground" : "text-foreground"
+            scrolled ? "text-white" : "text-white"
           }`}>
             Demigod House
           </span>
