@@ -67,9 +67,9 @@ const HomeHeader = () => {
 
         <button className="md:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? (
-            <X className={scrolled ? "text-primary-foreground" : "text-foreground"} />
+            <X className="text-white" />
           ) : (
-            <Menu className={scrolled ? "text-primary-foreground" : "text-foreground"} />
+            <Menu className="text-white" />
           )}
         </button>
       </div>
