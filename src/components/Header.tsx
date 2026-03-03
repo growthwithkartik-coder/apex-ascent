@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/new_logo.png";
 
 const navLinks = [
   { label: "M&M", href: "/" },
@@ -42,7 +42,7 @@ const Header = () => {
           <img
             src={logo}
             alt="Demigod House"
-            className="w-10 h-10 rounded-lg object-cover"
+            className="w-24 h-24 rounded-lg object-cover"
           />
           <span className="font-heading text-xl font-bold text-white transition-colors duration-300">
             Demigod House
