@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "M&M", href: "/" },
@@ -10,15 +11,20 @@ const navLinks = [
   { label: "Wedding", href: "/events" },
 ];
 
-const HomeHeader = () => {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   return (
     <motion.header
@@ -31,15 +37,15 @@ const HomeHeader = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg gradient-warm flex items-center justify-center font-heading font-bold text-foreground text-lg">
-            {/* D */}
-          </div>
-          <span className={`font-heading text-xl font-bold transition-colors duration-300 ${
-            scrolled ? "text-white" : "text-white"
-          }`}>
-            Test House
+          <img
+            src={logo}
+            alt="Demigod House"
+            className="w-10 h-10 rounded-lg object-cover"
+          />
+          <span className="font-heading text-xl font-bold text-white transition-colors duration-300">
+            Demigod House
           </span>
         </Link>
 
@@ -49,7 +55,9 @@ const HomeHeader = () => {
               key={link.label}
               to={link.href}
               className={`relative font-body text-sm font-medium tracking-wide transition-colors duration-300 group ${
-                scrolled ? "text-white/80 hover:text-warm-gold" : "text-white/80 hover:text-warm-gold"
+                location.pathname === link.href
+                  ? "text-warm-gold"
+                  : "text-white/80 hover:text-warm-gold"
               }`}
             >
               {link.label}
@@ -84,7 +92,7 @@ const HomeHeader = () => {
             <Link
               key={link.label}
               to={link.href}
-              className="block py-3 font-body text-primary-foreground/80 hover:text-warm-gold transition-colors border-b border-primary-foreground/5"
+              className="block py-3 font-body text-white/80 hover:text-warm-gold transition-colors border-b border-white/5"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
@@ -99,4 +107,4 @@ const HomeHeader = () => {
   );
 };
 
-export default HomeHeader;
+export default Header;

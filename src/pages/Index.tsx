@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
-import HomeHeader from "@/components/HomeHeader";
+import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import VideoSection from "@/components/VideoSection";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import SectorsCarousel from "@/components/SectorsCarousel";
 import TabsSection from "@/components/TabsSection";
@@ -20,12 +19,10 @@ const Index = () => {
   return (
     <>
       <LoadingScreen isLoading={isLoading} />
-      <HomeHeader />
+      <Header />
       <main className="home-dark min-h-screen">
         <HeroSection />
         <div className="section-divider" />
-        {/* <VideoSection />
-        <div className="section-divider" /> */}
         <ServicesCarousel />
         <div className="section-divider" />
         <SectorsCarousel />
