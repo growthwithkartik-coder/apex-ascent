@@ -48,6 +48,15 @@
     --deep-black: 220 20% 4%;
     --smoke: 220 10% 50%;
 
+    /* Home page accent palette */
+    --coral: 12 80% 55%;
+    --coral-light: 15 85% 65%;
+    --teal: 175 55% 30%;
+    --teal-light: 175 60% 42%;
+    --warm-gold: 42 78% 55%;
+    --warm-gold-dark: 42 70% 38%;
+    --slate-deep: 220 20% 4%;
+
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'Inter', system-ui, sans-serif;
 
