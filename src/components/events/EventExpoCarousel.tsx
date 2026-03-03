@@ -1,63 +1,257 @@
-import { motion } from "framer-motion";
-import eventGala from "@/assets/events/event-gala.jpg";
-import eventLaunch from "@/assets/events/event-launch.jpg";
-import eventWedding from "@/assets/events/event-wedding.jpg";
-import eventFestival from "@/assets/events/event-festival.jpg";
-import eventNetworking from "@/assets/events/event-networking.jpg";
-import eventAwards from "@/assets/events/event-awards.jpg";
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { gsap } from 'gsap';
+import hero1 from '@/assets/brand-association.jpg';
+import hero2 from '@/assets/brand-association.jpg';
+import hero3 from '@/assets/brand-association.jpg';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const gallery = [eventGala, eventLaunch, eventWedding, eventFestival, eventNetworking, eventAwards];
+const slides = [
+  {
+    image: hero1,
+    headline: 'Where Luxury\nMeets Legacy',
+    subheading: 'The world\'s most exclusive event experiences, curated for the extraordinary.',
+  },
+  {
+    image: hero2,
+    headline: 'Command\nThe Stage',
+    subheading: 'Fashion. Culture. Power. A cinematic celebration of the finest.',
+  },
+  {
+    image: hero3,
+    headline: 'An Empire\nOf Elegance',
+    subheading: 'Step into a world where every detail is designed for distinction.',
+  },
+];
 
 const EventGallery = () => {
-  return (
-    <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="font-body text-sm tracking-widest uppercase mb-4 block" style={{ color: "hsl(260 85% 65%)" }}>
-            Gallery
-          </span>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold" style={{ color: "hsl(0 0% 95%)" }}>
-            Past <span className="ev-gradient-text">Events</span>
-          </h2>
-        </motion.div>
+  const [current, setCurrent] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const timerRef = useRef<ReturnType<typeof setInterval>>();
+  const isAnimating = useRef(false);
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {gallery.map((img, i) => (
-            <motion.div
-              key={i}
-              className={`relative rounded-2xl overflow-hidden group cursor-pointer ${
-                i === 0 || i === 5 ? "md:row-span-2" : ""
-              }`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <img
-                src={img}
-                alt={`Event ${i + 1}`}
-                className={`w-full object-cover group-hover:scale-110 transition-transform duration-700 ${
-                  i === 0 || i === 5 ? "h-full min-h-[300px] md:min-h-[500px]" : "h-56 md:h-60"
-                }`}
-              />
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                style={{ background: "hsl(260 85% 65% / 0.3)" }}
-              >
-                <span className="font-body font-semibold tracking-wide" style={{ color: "hsl(0 0% 100%)" }}>View</span>
-              </div>
-            </motion.div>
-          ))}
+  const animateSlide = useCallback((index: number) => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+
+    const tl = gsap.timeline({
+      onComplete: () => { isAnimating.current = false; },
+    });
+
+    // Fade out all slides
+    slideRefs.current.forEach((slide, i) => {
+      if (i !== index && slide) {
+        tl.to(slide, { opacity: 0, duration: 0.8, ease: 'power2.inOut' }, 0);
+      }
+    });
+
+    const activeSlide = slideRefs.current[index];
+    const activeText = textRefs.current[index];
+
+    if (activeSlide) {
+      // Background zoom-out effect
+      const img = activeSlide.querySelector('img');
+      if (img) {
+        gsap.set(img, { scale: 1.2 });
+        tl.to(img, { scale: 1, duration: 6, ease: 'power1.out' }, 0);
+      }
+      tl.to(activeSlide, { opacity: 1, duration: 1, ease: 'power2.inOut' }, 0);
+    }
+
+    if (activeText) {
+      const heading = activeText.querySelector('h1');
+      const sub = activeText.querySelector('p');
+      const btn = activeText.querySelector('.hero-btn');
+
+      if (heading) {
+        // SplitText-like stagger on words
+        const words = heading.querySelectorAll('.word');
+        tl.fromTo(
+          words,
+          { y: 80, opacity: 0, rotateX: 20 },
+          { y: 0, opacity: 1, rotateX: 0, duration: 1, stagger: 0.12, ease: 'power3.out' },
+          0.3
+        );
+      }
+      if (sub) {
+        tl.fromTo(sub, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.8);
+      }
+      if (btn) {
+        tl.fromTo(btn, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 1.1);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    animateSlide(0);
+    timerRef.current = setInterval(() => {
+      setCurrent(prev => {
+        const next = (prev + 1) % slides.length;
+        return next;
+      });
+    }, 7000);
+    return () => clearInterval(timerRef.current);
+  }, [animateSlide]);
+
+  useEffect(() => {
+    animateSlide(current);
+  }, [current, animateSlide]);
+
+  const goTo = (dir: number) => {
+    if (isAnimating.current) return;
+    clearInterval(timerRef.current);
+    setCurrent(prev => (prev + dir + slides.length) % slides.length);
+    timerRef.current = setInterval(() => {
+      setCurrent(prev => (prev + 1) % slides.length);
+    }, 7000);
+  };
+
+  const renderWords = (text: string) =>
+    text.split('\n').map((line, li) => (
+      <span key={li} className="block">
+        {line.split(' ').map((word, wi) => (
+          <span key={wi} className="word inline-block mr-[0.3em]" style={{ perspective: '600px' }}>
+            {word}
+          </span>
+        ))}
+      </span>
+    ));
+
+  return (
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
+      {/* Floating particles */}
+      <Particles />
+
+      {slides.map((slide, i) => (
+        <div
+          key={i}
+          ref={el => { slideRefs.current[i] = el; }}
+          className="absolute inset-0"
+          style={{ opacity: i === 0 ? 1 : 0 }}
+        >
+          <img
+            src={slide.image}
+            alt={`Hero slide ${i + 1}`}
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         </div>
+      ))}
+
+      {/* Text content */}
+      {slides.map((slide, i) => (
+        <div
+          key={`text-${i}`}
+          ref={el => { textRefs.current[i] = el; }}
+          className={`absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 ${
+            i === current ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
+          style={{ opacity: i === current ? 1 : 0 }}
+        >
+          <h1 className="heading-xl text-foreground mb-6">
+            {renderWords(slide.headline)}
+          </h1>
+          <p className="body-lg max-w-xl mb-10 opacity-0">{slide.subheading}</p>
+          <div className="hero-btn opacity-0">
+            <button className="btn-primary">Explore Events</button>
+          </div>
+        </div>
+      ))}
+
+      {/* Arrows */}
+      <button
+        onClick={() => goTo(-1)}
+        className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-primary/30 text-primary/60 hover:text-primary hover:border-primary transition-all duration-300"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={() => goTo(1)}
+        className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center border border-primary/30 text-primary/60 hover:text-primary hover:border-primary transition-all duration-300"
+        aria-label="Next slide"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              clearInterval(timerRef.current);
+              setCurrent(i);
+            }}
+            className={`h-[2px] transition-all duration-500 ${
+              i === current ? 'w-10 bg-primary' : 'w-6 bg-foreground/20'
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
+};
+
+// Floating particles component
+const Particles = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles: { x: number; y: number; size: number; speedX: number; speedY: number; opacity: number }[] = [];
+    for (let i = 0; i < 30; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.3 + 0.1,
+      });
+    }
+
+    let animId: number;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(42, 78%, 55%, ${p.opacity})`;
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      });
+      animId = requestAnimationFrame(animate);
+    };
+    animate();
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 z-[5] pointer-events-none" />;
 };
 
 export default EventGallery;

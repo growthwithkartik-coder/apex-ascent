@@ -34,12 +34,12 @@ const HomeHeader = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-lg gradient-warm flex items-center justify-center font-heading font-bold text-foreground text-lg">
-            D
+            {/* D */}
           </div>
           <span className={`font-heading text-xl font-bold transition-colors duration-300 ${
             scrolled ? "text-white" : "text-white"
           }`}>
-            Demigod House
+            Test House
           </span>
         </Link>
 

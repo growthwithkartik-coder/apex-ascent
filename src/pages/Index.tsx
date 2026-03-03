@@ -24,8 +24,8 @@ const Index = () => {
       <main className="home-dark min-h-screen">
         <HeroSection />
         <div className="section-divider" />
-        <VideoSection />
-        <div className="section-divider" />
+        {/* <VideoSection />
+        <div className="section-divider" /> */}
         <ServicesCarousel />
         <div className="section-divider" />
         <SectorsCarousel />

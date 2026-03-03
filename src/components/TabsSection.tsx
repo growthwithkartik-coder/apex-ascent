@@ -153,7 +153,7 @@ const TabsSection = () => {
               onClick={() => setActiveTab(i)}
               className={`relative px-6 py-3 rounded-full font-body font-medium text-sm transition-all duration-300 ${
                 i === activeTab
-                  ? "gradient-coral text-primary-foreground"
+                  ? "gradient-coral bg-[#e6b033] text-black"
                   : "glass-card text-muted-foreground hover:text-foreground"
               }`}
               whileHover={{ scale: 1.05 }}
