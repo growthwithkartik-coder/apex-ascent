@@ -24,17 +24,19 @@ const SplitSection = ({ media, heading, description, cta, reverse = false, id }:
     const textEl = textRef.current;
     if (!section || !imgEl || !textEl) return;
 
-    // Parallax on image
-    gsap.to(imgEl.querySelector('img'), {
-      yPercent: -15,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1,
-      },
-    });
+    const mediaEl = imgEl.querySelector('img') || imgEl.querySelector('video');
+    if (mediaEl) {
+      gsap.to(mediaEl, {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      });
+    }
 
     // Image zoom
     gsap.fromTo(
