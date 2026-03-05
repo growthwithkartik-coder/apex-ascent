@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import EventExpoCarousel from "@/components/events/EventExpoCarousel";
 import SplitSection from "@/components/events/SplitSection";
-import split1 from "@/assets/split1.jpg";
-import split2 from "@/assets/split2.jpg";
+import splitAbout from "@/assets/events/split-about.jpg";
+import splitExperience from "@/assets/events/split-experience.jpg";
 import PremiumCarousel from "@/components/events/PremiumCarousel";
 import MembershipAccordion from "@/components/events/MembershipAccordion";
 import FeatureCarousel from "@/components/events/FeatureCarousel";
@@ -17,17 +17,29 @@ const Events = () => {
         <EventExpoCarousel />
         <SplitSection
           id="experiences"
-          media={split1}
+          media={splitAbout}
+          badge="Our Philosophy"
           heading="Crafting Unforgettable Experiences"
-          description="Every event is a masterpiece. From intimate gatherings of the world's most influential minds to grand spectacles that command international attention — we architect experiences that transcend the ordinary and enter the realm of the extraordinary."
+          description="Every event is a masterpiece. From intimate gatherings of the world's most influential minds to grand spectacles that command international attention — we architect experiences that transcend the ordinary."
           cta="Discover More"
+          highlights={[
+            "Bespoke event conceptualization & design",
+            "World-class venue curation",
+            "End-to-end production management",
+          ]}
         />
         <SplitSection
-          media={split2}
+          media={splitExperience}
+          badge="Our Process"
           heading="Where Vision Becomes Reality"
-          description="Our team of world-class producers, designers, and curators work in harmony to transform bold visions into breathtaking reality. Every detail is considered, every moment choreographed, every sensation elevated to perfection."
+          description="Our team of world-class producers, designers, and curators work in harmony to transform bold visions into breathtaking reality. Every detail is considered, every moment choreographed."
           cta="Our Process"
           reverse
+          highlights={[
+            "Creative direction & storytelling",
+            "Technology-driven immersive experiences",
+            "Global logistics & coordination",
+          ]}
         />
         <PremiumCarousel />
         <MembershipAccordion />
