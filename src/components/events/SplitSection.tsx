@@ -13,7 +13,7 @@ interface SplitSectionProps {
   id?: string;
 }
 
-const SplitSection = ({ image, heading, description, cta, reverse = false, id }: SplitSectionProps) => {
+const SplitSection = ({ media, heading, description, cta, reverse = false, id }: SplitSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -97,14 +97,25 @@ const SplitSection = ({ image, heading, description, cta, reverse = false, id }:
   return (
     <section ref={sectionRef} id={id} className="section-padding">
       <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center max-w-7xl mx-auto`}>
-        {/* Image */}
-        <div ref={imageRef} className="w-full lg:w-1/2 overflow-hidden">
-          <img
-            src={image}
-            alt={heading}
-            className="w-full h-[400px] lg:h-[550px] object-cover"
-            loading="lazy"
-          />
+        {/* Media */}
+        <div ref={imageRef} className="w-full lg:w-1/2 overflow-hidden rounded-lg">
+          {/\.(mp4|webm|ogg)$/i.test(media) ? (
+            <video
+              src={media}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-[400px] lg:h-[550px] object-cover"
+            />
+          ) : (
+            <img
+              src={media}
+              alt={heading}
+              className="w-full h-[400px] lg:h-[550px] object-cover"
+              loading="lazy"
+            />
+          )}
         </div>
 
         {/* Text */}
