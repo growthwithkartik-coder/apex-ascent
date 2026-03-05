@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 interface SplitSectionProps {
-  image: string;
+  media: string;
   heading: string;
   description: string;
   cta: string;
