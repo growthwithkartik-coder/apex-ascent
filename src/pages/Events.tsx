@@ -17,13 +17,13 @@ const Events = () => {
         <EventExpoCarousel />
         <SplitSection
           id="experiences"
-          image={split1}
+          media={split1}
           heading="Crafting Unforgettable Experiences"
           description="Every event is a masterpiece. From intimate gatherings of the world's most influential minds to grand spectacles that command international attention — we architect experiences that transcend the ordinary and enter the realm of the extraordinary."
           cta="Discover More"
         />
         <SplitSection
-          image={split2}
+          media={split2}
           heading="Where Vision Becomes Reality"
           description="Our team of world-class producers, designers, and curators work in harmony to transform bold visions into breathtaking reality. Every detail is considered, every moment choreographed, every sensation elevated to perfection."
           cta="Our Process"
