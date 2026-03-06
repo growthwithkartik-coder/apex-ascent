@@ -37,14 +37,14 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <Link to="/" className="flex items-center gap-3 group">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2 sm:py-3">
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 group min-w-0">
           <img
             src={logo}
             alt="Demigod House"
-            className="w-24 h-24 rounded-lg object-cover"
+            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg object-cover flex-shrink-0"
           />
-          <span className="font-heading text-xl font-bold text-white transition-colors duration-300">
+          <span className="font-heading text-base sm:text-lg md:text-xl font-bold text-white transition-colors duration-300 truncate">
             Demigod House
           </span>
         </Link>
