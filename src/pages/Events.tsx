@@ -58,7 +58,7 @@ const Events = () => {
           heading="Where Vision Becomes Reality"
           description="Our team of world-class producers, designers, and curators work in harmony to transform bold visions into breathtaking reality. Every detail is considered, every moment choreographed."
           cta="Our Process"
-          reverse
+          
           highlights={[
             "Creative direction & storytelling",
             "Technology-driven immersive experiences",
@@ -84,7 +84,7 @@ const Events = () => {
           heading="Where Vision Becomes Reality"
           description="Our team of world-class producers, designers, and curators work in harmony to transform bold visions into breathtaking reality. Every detail is considered, every moment choreographed."
           cta="Our Process"
-          reverse
+          
           highlights={[
             "Creative direction & storytelling",
             "Technology-driven immersive experiences",

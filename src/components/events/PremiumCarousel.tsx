@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import hero1 from '@/assets/hero1.jpg';
-import hero2 from '@/assets/hero2.jpg';
-import hero3 from '@/assets/hero3.jpg';
+import hero1 from '@/assets/events/section3/economic_patriots.webp';
+import hero2 from '@/assets/events/section3/india_patriots.webp';
+import hero3 from '@/assets/events/section3/us_patroits.webp';
+import hero4 from '@/assets/events/section3/economic_patriots.webp';
+
 import split1 from '@/assets/split1.jpg';
 import split2 from '@/assets/split2.jpg';
 
@@ -13,8 +15,10 @@ const events = [
   { image: hero1, title: 'The Grand Gala', date: 'March 2026', location: 'Dubai' },
   { image: hero2, title: 'Fashion Empire', date: 'April 2026', location: 'Milan' },
   { image: hero3, title: 'The Gold Standard', date: 'May 2026', location: 'Monaco' },
-  { image: split1, title: 'Summit of Power', date: 'June 2026', location: 'London' },
-  { image: split2, title: 'Midnight Luxe', date: 'July 2026', location: 'New York' },
+  { image: hero4, title: 'The Grand Gala', date: 'March 2026', location: 'Dubai' },
+
+  // { image: split1, title: 'Summit of Power', date: 'June 2026', location: 'London' },
+  // { image: split2, title: 'Midnight Luxe', date: 'July 2026', location: 'New York' },
 ];
 
 const PremiumCarousel = () => {
@@ -68,9 +72,8 @@ const PremiumCarousel = () => {
             className="absolute w-[280px] md:w-[320px] cursor-pointer group"
             onClick={() => setActive(i)}
           >
-            <div className={`overflow-hidden transition-all duration-500 ${
-              i === active ? 'border-gold-glow border' : 'border border-border'
-            }`}>
+            <div className={`overflow-hidden transition-all duration-500 ${i === active ? 'border-gold-glow border' : 'border border-border'
+              }`}>
               <img
                 src={event.image}
                 alt={event.title}
@@ -93,9 +96,8 @@ const PremiumCarousel = () => {
           <button
             key={i}
             onClick={() => setActive(i)}
-            className={`h-[2px] transition-all duration-500 ${
-              i === active ? 'w-8 bg-primary' : 'w-4 bg-muted-foreground/30'
-            }`}
+            className={`h-[2px] transition-all duration-500 ${i === active ? 'w-8 bg-primary' : 'w-4 bg-muted-foreground/30'
+              }`}
             aria-label={`Go to event ${i + 1}`}
           />
         ))}
