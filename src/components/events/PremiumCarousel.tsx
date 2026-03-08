@@ -4,10 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import hero1 from '@/assets/events/section3/economic_patriots.webp';
 import hero2 from '@/assets/events/section3/india_patriots.webp';
 import hero3 from '@/assets/events/section3/us_patroits.webp';
-import hero4 from '@/assets/events/section3/economic_patriots.webp';
-
-import split1 from '@/assets/split1.jpg';
-import split2 from '@/assets/split2.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
