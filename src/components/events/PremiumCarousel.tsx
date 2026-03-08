@@ -12,13 +12,21 @@ import split2 from '@/assets/split2.jpg';
 gsap.registerPlugin(ScrollTrigger);
 
 const events = [
-  { image: hero1, title: 'The Grand Gala', date: 'March 2026', location: 'Dubai' },
-  { image: hero2, title: 'Fashion Empire', date: 'April 2026', location: 'Milan' },
-  { image: hero3, title: 'The Gold Standard', date: 'May 2026', location: 'Monaco' },
-  { image: hero4, title: 'The Grand Gala', date: 'March 2026', location: 'Dubai' },
-
-  // { image: split1, title: 'Summit of Power', date: 'June 2026', location: 'London' },
-  // { image: split2, title: 'Midnight Luxe', date: 'July 2026', location: 'New York' },
+  { 
+    image: hero1, 
+    title: 'Economic Patriots Summit Europe', 
+    description: "Calling all European business minds! Get ready for an eye-opening summit that'll shake up how we think about Europe's money matters."
+  },
+  { 
+    image: hero2, 
+    title: 'Economic Patriots Summit India', 
+    description: "Hey India! Ready to be part of something big? Join us for a game-changing summit where we're talking real business, real growth, and real opportunities."
+  },
+  { 
+    image: hero3, 
+    title: 'Economic Patriots Summit USA', 
+    description: "America, let's talk business! Join us for a no-nonsense summit where we cut through the fluff and focus on what really works in today's economy."
+  },
 ];
 
 const PremiumCarousel = () => {
