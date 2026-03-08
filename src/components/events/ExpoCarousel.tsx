@@ -9,10 +9,36 @@ import expoRealEstate from '@/assets/expo-realestate.jpg';
 gsap.registerPlugin(ScrollTrigger);
 
 const expos = [
-  { image: expoPharma, title: 'Pharma Expo', description: 'Pioneering health innovation on a global stage.' },
-  { image: expoTravel, title: 'Travel Expo', description: 'Luxury destinations and exclusive getaways.' },
-  { image: expoTech, title: 'Tech Expo', description: 'The future of technology, unveiled.' },
-  { image: expoRealEstate, title: 'Real Estate Expo', description: 'Premium properties and architectural marvels.' },
+  { 
+    image: expoPharma, 
+    title: 'Pharma Expo', 
+    description: 'A Pharma Expo is a specialized trade exhibition focused on the pharmaceutical industry. It serves as a platform for pharmaceutical companies, healthcare professionals, researchers, and manufacturers to showcase innovations, products, and technologies related to medicine, drug development, and healthcare solutions.' 
+  },
+  { 
+    image: expoTravel, 
+    title: 'Travel & Tourism Expo', 
+    description: 'A Travel & Tourism Expo is a large-scale event that brings together travel agencies, tourism boards, airlines, hospitality brands, and adventure companies to showcase destinations, travel services, and experiences. These expos serve as a hub for networking, business collaborations, and discovering new travel trends.' 
+  },
+  { 
+    image: expoTech, 
+    title: 'Tech Expo', 
+    description: 'A Tech Expo is a large-scale event that showcases the latest advancements in technology, innovation, and digital transformation. It serves as a platform for tech companies, startups, developers, and industry leaders to present their cutting-edge products, software, and solutions.' 
+  },
+  { 
+    image: expoRealEstate, 
+    title: "D'estate Expo", 
+    description: "D'Estate Expo is a leading real estate exhibition that brings together industry experts, investors, developers, and homebuyers under one roof. Whether you're looking for residential, commercial, or luxury properties, this expo offers exclusive opportunities to explore top-tier real estate projects and investment prospects." 
+  },
+  { 
+    image: expoPharma, 
+    title: 'Career Expo', 
+    description: "A Career Expo is a premier event where job seekers, professionals, and recruiters come together to explore career opportunities, industry trends, and skill development. Whether you're a fresh graduate, an experienced professional, or a company looking for top talent, this expo serves as a dynamic platform for networking and career advancement." 
+  },
+  { 
+    image: expoTravel, 
+    title: 'Bharatnatyam Dance Competition', 
+    description: "Embracing Centuries of Grace and Rhythm, Natya Tarangini is a premier Bharatnatyam competition celebrating the timeless beauty of India's classical dance. This cultural celebration unites rising stars and seasoned performers through expressive storytelling, intricate footwork, and sublime abhinaya." 
+  },
 ];
 
 const ExpoCarousel = () => {
@@ -48,7 +74,7 @@ const ExpoCarousel = () => {
         <p className="body-lg max-w-xl mx-auto">Industry-defining exhibitions across the globe.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {expos.map((expo, i) => (
           <div
             key={i}
@@ -74,8 +100,8 @@ const ExpoCarousel = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="font-display text-lg font-semibold text-foreground mb-1">{expo.title}</h3>
-                <p className="text-sm text-muted-foreground">{expo.description}</p>
+                <h3 className="font-display text-lg font-semibold text-foreground mb-2">{expo.title}</h3>
+                <p className="text-sm text-muted-foreground line-clamp-3">{expo.description}</p>
               </div>
               {hovered === i && (
                 <div className="absolute inset-0 pointer-events-none" style={{

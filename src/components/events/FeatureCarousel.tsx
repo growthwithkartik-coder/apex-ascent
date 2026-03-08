@@ -4,15 +4,34 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import hero1 from '@/assets/hero1.jpg';
 import hero2 from '@/assets/hero2.jpg';
 import hero3 from '@/assets/hero3.jpg';
-import split1 from '@/assets/split1.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
-  { image: hero1, title: 'Global Reach', description: 'Events spanning 40+ countries across 6 continents.' },
-  { image: hero2, title: 'Cinematic Production', description: 'Hollywood-level production for every experience.' },
-  { image: hero3, title: 'VIP Curation', description: 'Every detail handcrafted for discerning tastes.' },
-  { image: split1, title: 'Legacy Building', description: 'Creating moments that define generations.' },
+  { 
+    image: hero1, 
+    title: "D'Yacht Party", 
+    heading: 'Sail into Luxury & Celebration',
+    description: 'Step aboard a magnificent yacht and indulge in an unforgettable evening of luxury, music, and entertainment. Enjoy breathtaking ocean views, gourmet dining, and an exclusive party atmosphere like no other.',
+    price: '€749',
+    action: 'Sail'
+  },
+  { 
+    image: hero2, 
+    title: 'Oktober fest', 
+    heading: 'Celebrate Oktoberfest in Style',
+    description: 'Join us for a festive Oktoberfest celebration filled with traditional Bavarian music, authentic German cuisine, and the finest selection of beers. Experience the joy of this world-famous festival with exciting games, live performances, and a vibrant atmosphere.',
+    price: '€700',
+    action: 'Oktoberfest'
+  },
+  { 
+    image: hero3, 
+    title: 'Star Wars Theme Party', 
+    heading: 'Star Wars Theme Party',
+    description: 'Step into a world of cinematic wonder with our exclusive Movie Theme Event. Enjoy immersive decor, live performances, and themed experiences inspired by blockbuster hits.',
+    price: '€800',
+    action: 'Star'
+  },
 ];
 
 const FeatureCarousel = () => {
@@ -58,7 +77,7 @@ const FeatureCarousel = () => {
         <p className="body-lg max-w-xl mx-auto">The pillars of an extraordinary experience.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {features.map((feature, i) => (
           <div
             key={i}
@@ -84,8 +103,12 @@ const FeatureCarousel = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
-              <h3 className="font-display text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground">{feature.description}</p>
+              <span className="inline-block px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full mb-3">
+                {feature.price}
+              </span>
+              <h3 className="font-display text-xl font-semibold text-foreground mb-1">{feature.title}</h3>
+              <p className="text-sm text-primary/80 mb-2">{feature.heading}</p>
+              <p className="text-sm text-muted-foreground line-clamp-2">{feature.description}</p>
             </div>
             {/* Subtle glow on hover */}
             {hovered === i && (

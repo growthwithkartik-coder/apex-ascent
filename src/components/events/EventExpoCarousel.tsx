@@ -8,18 +8,23 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const slides = [
   {
     image: hero1,
-    headline: 'Where Luxury\nMeets Legacy',
-    subheading: 'The world\'s most exclusive event experiences, curated for the extraordinary.',
+    headline: 'CAR-O-BAR –\nPowered by Demigod House',
+    subheading: 'A premier ultra-luxury car exhibition for global manufacturers, high-net-worth collectors, farming solutions, sustainable technologies, and the future of agri-business, all in one place.',
   },
   {
     image: hero2,
-    headline: 'Command\nThe Stage',
-    subheading: 'Fashion. Culture. Power. A cinematic celebration of the finest.',
+    headline: 'Entrepreneurship Forum 2025 –\nPowered by Demigod House',
+    subheading: 'Demigod House is proud to host the upcoming Entrepreneurship Forum – a platform for innovators, dreamers, and future leaders.',
   },
   {
     image: hero3,
-    headline: 'An Empire\nOf Elegance',
-    subheading: 'Step into a world where every detail is designed for distinction.',
+    headline: 'Agro Tech 2025 –\nPowered by Demigod House',
+    subheading: 'Demigod House brings you Agro Tech 2025 — a celebration of innovation in agriculture. Discover smart farming solutions, sustainable technologies, and the future of agri-business, all in one place.',
+  },
+  {
+    image: hero3,
+    headline: 'Demigod Fighting Cub (DFC) –\nRise of the Celestial Beast',
+    subheading: 'Enter a mythical arena where divine power meets primal fury. In DFC, train your cub, master ancient powers, and battle to become a true demigod.',
   },
 ];
 

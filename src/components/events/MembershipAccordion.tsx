@@ -8,20 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const accordionData = [
   {
-    title: 'Benefits',
-    content: 'Access to exclusive global events, VIP concierge services, priority reservations at partner venues, complimentary luxury transfers, and personalized event curation by our world-class team.',
+    title: 'Accordion Item #1',
+    content: 'This is the first item\'s accordion body. It is shown by default...',
   },
   {
-    title: 'Enrollment',
-    content: 'Membership is by invitation only. Prospective members undergo a discreet vetting process ensuring alignment with our community values of excellence, discretion, and distinction.',
+    title: 'Accordion Item #2',
+    content: 'This is the second item\'s accordion body. It is hidden by default...',
   },
   {
-    title: 'Membership Tiers',
-    content: 'Choose from Gold, Platinum, and Black tiers — each unlocking progressively elevated privileges, from backstage access at premier events to private jet transfers and bespoke experiences.',
-  },
-  {
-    title: 'Standards',
-    content: 'We uphold the highest standards of service, privacy, and exclusivity. Every touchpoint is designed to exceed expectations, from the first interaction to every event thereafter.',
+    title: 'Accordion Item #3',
+    content: 'This is the third item\'s accordion body. It is hidden by default...',
   },
 ];
 

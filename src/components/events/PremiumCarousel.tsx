@@ -91,7 +91,7 @@ const PremiumCarousel = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h3 className="font-display text-xl font-semibold text-foreground">{event.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{event.date} · {event.location}</p>
+                <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{event.description}</p>
               </div>
             </div>
           </div>
