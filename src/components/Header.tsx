@@ -8,7 +8,7 @@ const navLinks = [
   { label: "M&M", href: "/" },
   { label: "Events", href: "/events" },
   { label: "Corporate", href: "/events" },
-  { label: "Wedding", href: "/events" },
+  { label: "Wedding", href: "/wedding" },
 ];
 
 const Header = () => {
