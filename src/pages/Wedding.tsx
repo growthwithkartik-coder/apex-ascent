@@ -11,6 +11,9 @@ import WeddingShowcase from "@/components/wedding/WeddingShowcase";
 import WeddingStory from "@/components/wedding/WeddingStory";
 import WeddingGallery from "@/components/wedding/WeddingGallery";
 import WeddingVideo from "@/components/wedding/WeddingVideo";
+import WeddingServicesCarousel from "@/components/wedding/WeddingServicesCarousel";
+import WeddingVideoShowcase from "@/components/wedding/WeddingVideoShowcase";
+import WeddingExperiences from "@/components/wedding/WeddingExperiences";
 
 const Wedding = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,8 +33,11 @@ const Wedding = () => {
         <WeddingVenues />
         <WeddingProcess />
         <WeddingAccordion />
+        <WeddingServicesCarousel />
         <WeddingShowcase />
+        <WeddingVideoShowcase />
         <WeddingStory />
+        <WeddingExperiences />
         <WeddingGallery />
         <WeddingVideo />
         <Footer />
