@@ -33,8 +33,11 @@ const Wedding = () => {
         <WeddingVenues />
         <WeddingProcess />
         <WeddingAccordion />
+        <WeddingServicesCarousel />
         <WeddingShowcase />
+        <WeddingVideoShowcase />
         <WeddingStory />
+        <WeddingExperiences />
         <WeddingGallery />
         <WeddingVideo />
         <Footer />
