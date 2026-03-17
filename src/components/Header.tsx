@@ -7,7 +7,7 @@ import logo from "@/assets/new_logo.png";
 const navLinks = [
   { label: "M&M", href: "/" },
   { label: "Events", href: "/events" },
-  { label: "Corporate", href: "/events" },
+  { label: "Corporate", href: "/corporate" },
   { label: "Wedding", href: "/wedding" },
 ];
 
